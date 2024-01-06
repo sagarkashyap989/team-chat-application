@@ -1,5 +1,5 @@
 const Layout = ({children} : {children: React.ReactNode}) => {
-    return (  <div className="bg-red-500">
+    return (  <div className="h-full flex item-center justify-center">
         {children}
     </div>);
 }

@@ -1,3 +1,11 @@
-1 jan 
--  completed 18 min vid
--  setup environment
+ID = 889752441584-g2amu1k1osel8a49pfaimdb7j3fs7v51.apps.googleusercontent.com
+
+sec+ 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
+
+
+
+github
+
+ID = 9e8c93d0a411f585ae4f
+
+sec = d4a89830ef648f42f101aa605a10374392f85e0b
