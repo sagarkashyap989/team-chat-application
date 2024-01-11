@@ -1,3 +1,7 @@
+ startPg &
+
+
+
 ID = 889752441584-g2amu1k1osel8a49pfaimdb7j3fs7v51.apps.googleusercontent.com
 
 sec+ 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

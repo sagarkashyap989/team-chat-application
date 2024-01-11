@@ -14,10 +14,9 @@ interface FileUploadProps{
 
 const FileUpload = ({onChange, value, endpoint}: FileUploadProps) => {
 
-    console.log(value,'levi value')
-
+        
     const fileType = value?.split('.').pop();
-    console.log(value, fileType,'levi value')
+    
 
     if(value && fileType !=='pdf'){
         return (

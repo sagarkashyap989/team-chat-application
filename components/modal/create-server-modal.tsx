@@ -3,8 +3,7 @@
 
 import * as z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from 'react-hook-form';
-import {useState, useEffect} from 'react'
+import { useForm } from 'react-hook-form'; 
 import  {
 Dialog,    
 DialogContent,
@@ -15,7 +14,7 @@ DialogTitle
 } from '@/components/ui/dialog'
 import axios from 'axios'
 import { useRouter } from 'next/navigation';
-
+import { useModal } from '@/hooks/use-modal-store';
 
 import {
 Form, 
@@ -41,18 +40,15 @@ const formSchema = z.object({
 })
 
 
-const InitialModal = () => {
+const CreateServerModal = () => {
 
-
+    const { isOpen, onClose, type } =useModal();
     
+    const isModalOpen = isOpen && type === 'createServer'
 
-    const [isMounted, setIsMounted] = useState(false);
+ 
     const router = useRouter();
-    
-    useEffect(() => {
-      setIsMounted(true)
-    }, [])
-    
+     
 
 
     const form  = useForm({
@@ -70,9 +66,8 @@ const InitialModal = () => {
             await axios.post("/api/server", values);
 
             form.reset()
-
-            router.refresh()
-            window.location.reload();
+            onClose();  
+            router.refresh() 
 
         } catch (error) {
             console.log(error)
@@ -80,12 +75,14 @@ const InitialModal = () => {
 
     }
 
-
-    if(!isMounted){
-        return null
+    const handleClose = () =>{
+        form.reset();
+        onClose();
     }
+
+ 
     return ( 
-        <Dialog open>
+        <Dialog open = {isModalOpen} onOpenChange={handleClose}>
             <DialogContent className="bg-white text-black p-0 overflow-hidden">
 
             <DialogHeader className="pt-8 px-6">
@@ -161,4 +158,4 @@ const InitialModal = () => {
  );
 }
  
-export default InitialModal;
+export default CreateServerModal;
