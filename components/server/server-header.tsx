@@ -22,6 +22,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useModal } from "@/hooks/use-modal-store";
 
+
+
 interface ServerHeaderProps {
   server: ServerWithMembersWithProfiles;
   role?: MemberRole;
@@ -30,11 +32,11 @@ interface ServerHeaderProps {
 const ServerHeader = ({ server, role }: ServerHeaderProps) => {
   const { onOpen } = useModal();
   console.log(role, "levi role");
-  //   const isAdmin = role === MemberRole.ADMIN;
-  //   const isModerator = isAdmin || role === MemberRole.MODERATOR;
-  const isAdmin = true;
+    const isAdmin = role === MemberRole.ADMIN;
+    const isModerator = isAdmin || role === MemberRole.MODERATOR;
+  // const isAdmin = true;
 
-  const isModerator = true;
+  // const isModerator = true;
 
   return (
     <DropdownMenu>
@@ -77,6 +79,7 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
 
         {isModerator && (
           <DropdownMenuItem
+            onClick={() => onOpen('createChannel')}
             className="px-3 py-2 text-sm cursor-pointer"
           >
             Create Channel
@@ -88,6 +91,7 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
 
         {isAdmin && (
           <DropdownMenuItem
+            onClick= {() => onOpen('deleteServer', {server})}
             className=" text-rose-500 px-3 py-2 text-sm cursor-pointer"
           >
             delete server
@@ -97,6 +101,7 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
 
         {!isAdmin && (
           <DropdownMenuItem
+            onClick={() => onOpen('leaveServer', {server})}
             className=" text-rose-500 px-3 py-2 text-sm cursor-pointer"
           >
             Leave Server
